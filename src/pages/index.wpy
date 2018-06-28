@@ -90,7 +90,6 @@
     }
 
     dateFormat(value, row, index) {
-      console.log(value)
       if (value === null || value === '') {
         return ''
       }

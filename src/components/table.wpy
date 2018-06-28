@@ -50,7 +50,7 @@
 <script>
   import wepy from 'wepy'
 
-  export default class zanTable extends wepy.component {
+  export default class Table extends wepy.component {
     props = {
       columns: Array,
       rows: {
