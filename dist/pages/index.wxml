@@ -1,0 +1,15 @@
+
+  <view class="container">
+    
+  <view class="table-wrap">
+    <view class="table">
+      <view class="tr">
+        <view class="th"  wx:key="a" wx:for="{{$table$columns}}" style="{{ (!$table$fixed)? ';':(item.left === $table$undefined? 'position: absolute;z-index:99':'margin-left:'+(item.left) +'px')}};min-width:{{item.minWidth}}px;max-width:{{item.maxWidth}}px;">{{item.text}}</view>
+      </view>
+      <view class="tr"  wx:key="b" wx:for="{{$table$_rows}}" wx:for-item="row">
+        <view class="td" wx:key="c" wx:for="{{$table$columns}}" style="{{(!$table$fixed) ? ';': (item.left === $table$undefined? 'position: absolute;background-color:white;z-index:99':'margin-left:'+(item.left) +'px')}};min-width:{{item.minWidth}}px;max-width:{{item.maxWidth}}px;">{{row[item.field]}}</view>
+      </view>
+    </view>
+  </view>
+
+  </view>

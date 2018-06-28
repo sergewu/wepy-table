@@ -1,0 +1,92 @@
+<style lang="scss">
+
+</style>
+<template>
+  <view class="container">
+    <table :columns="columns" :rows="rows" :fixed="tableFixed"></table>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import table from '../components/table'
+  export default class ReportHour extends wepy.page {
+    config = {
+      navigationBarTitleText: 'wepy table'
+    }
+    components = {
+      table: table
+    }
+    data = {
+      tableFixed: true,
+      columns: [
+        { field: 'date', text: '日期' },
+        { field: 'newUser', text: '新增用户' },
+        { field: 'activeUser', text: '新增设备' },
+        { field: 'activeUser', text: '活跃用户' },
+        { field: 'activeUser', text: '新增付费数' },
+        { field: 'activeUser', text: '总付费数' },
+        { field: 'activeUser', text: '新用户充值额' },
+        { field: 'activeUser', text: '总充值额' },
+        { field: 'activeUser', text: '新用户付费率' },
+        { field: 'activeUser', text: '活跃付费率' },
+        { field: 'activeUser', text: 'ARPPU' },
+        { field: 'activeUser', text: 'ARPU' }
+      ],
+      rows: [
+        { date: '2018-06-15', newUser: '1000,121', activeUser: '10' },
+        { date: '2018-06-16', newUser: '1000,121', activeUser: '100000' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
+        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' }
+      ]
+    };
+    methods = {
+
+    };
+
+    onLoad(params, form) {
+      this.gid = params.gid
+      this.gameName = params.gameName
+    }
+  }
+</script>

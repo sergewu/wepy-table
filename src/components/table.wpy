@@ -1,0 +1,150 @@
+<style lang="scss">
+  .table-wrap{
+    height: 100%;
+    width: 99%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .table{
+    border-left:1px solid #dadada;
+    width: 99%;
+    overflow: scroll;
+  }
+  .tr{
+    width:99%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .th,.td{
+    padding:5px 0;
+    border-bottom: 1px solid #dadada;
+    border-right: 1px solid #dadada;
+    text-align: center;
+    justify-content: center;
+  }
+  .th{
+    word-break:keep-all;
+    white-space:nowrap;
+    font-weight: 800;
+    background-color: #e5e5e5;
+    font-size: 20rpx;
+  }
+  .td{
+    font-size: 20rpx;
+    word-wrap: break-word;
+  }
+
+</style>
+<template>
+  <view class="table-wrap">
+    <view class="table">
+      <view class="tr">
+        <view class="th" wx:key="a" wx:for="{{columns}}"   style="{{ (!fixed)? ';':(item.left === undefined? 'position: absolute;z-index:99':'margin-left:'+(item.left) +'px')}};min-width:{{item.minWidth}}px;max-width:{{item.maxWidth}}px;">{{item.text}}</view>
+      </view>
+      <view class="tr" wx:key="b" wx:for="{{_rows}}" wx:for-item="row">
+        <view  class="td" wx:key="c" wx:for="{{columns}}" style="{{(!fixed) ? ';': (item.left === undefined? 'position: absolute;background-color:white;z-index:99':'margin-left:'+(item.left) +'px')}};min-width:{{item.minWidth}}px;max-width:{{item.maxWidth}}px;">{{row[item.field]}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy'
+
+  export default class zanTable extends wepy.component {
+    props = {
+      columns: Array,
+      rows: {
+        type: Array,
+        default: []
+      },
+      fixed: Boolean
+    }
+    data = {
+      _rows: [],
+      columnMap: {},
+      maxLength: 0
+    }
+    watch = {
+      rows() {
+        this.initTable()
+      }
+    }
+    methods = {
+    }
+    event = {
+    }
+
+    onLoad() {
+      this.initTable()
+    }
+    // 初始化table
+    initTable() {
+      // 备份原始数据
+      this._rows = this.rows
+      this.maxLength = 0
+      // 先根据表头计算列宽度
+      for (let i in this.columns) {
+        let col = this.columns[i]
+        col.maxLength = this.getTextLength(String(col.text))
+        this.columnMap[col.field] = col
+      }
+      // 根据数据计算列宽度
+      for (let i in this._rows) {
+        let row = this._rows[i]
+        for (let key in row) {
+          let col = this.columnMap[key]
+          if (col !== undefined) {
+            let text = row[key]
+            if (text != null) {
+              if (col.format !== undefined) {
+                let r = col.format(text, this.rows[i], i)
+                if (r !== undefined) {
+                  text = r
+                  row[key] = text
+                }
+              }
+              let colLength = this.getTextLength(String(text))
+              if (colLength > col.maxLength) {
+                col.maxLength = colLength
+              }
+            }
+          }
+        }
+      }
+      // 计算最大宽度
+      for (let i = 0; i < this.columns.length; i++) {
+        let col = this.columns[i]
+        this.maxLength += col.maxLength
+      }
+      // 减去左右padding
+      let screenWidth = parseInt((wx.getSystemInfoSync().windowWidth * 0.99)) - 10
+      // 根据屏幕宽度计算每一列的实际宽度
+      for (let i = 0; i < this.columns.length; i++) {
+        let col = this.columns[i]
+        let width = (col.maxLength / this.maxLength * screenWidth).toFixed(2)
+        col.width = width
+        col.maxWidth = width
+        col.minWidth = width
+        // 最小列宽度为字符长度 * 8 + 6
+        if (width < col.maxLength * 8 + 6) {
+          col.minWidth = col.maxLength * 8 + 6
+          col.maxWidth = col.minWidth
+        }
+        if (this.fixed) {
+          if (i > 0) {
+            if (i === 1) {
+              col.left = parseFloat(this.columns[0].maxWidth)
+            } else {
+              col.left = 0
+            }
+          }
+        }
+      }
+      this.$apply()
+    }
+    // 获取文本长度
+    getTextLength(text) {
+      return text.replace(/[\u0391-\uFFE5]/g, 'aa').length
+    }
+  }
+</script>
