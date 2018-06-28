@@ -1,6 +1,8 @@
 # wepy-table
 基于wepy的表格组件
 
+项目里面需要用到表格，网上没有找到合适的组件，就自己写了个简单的，可能有很多bug,仅供参考！！！
+
 ### 安装wepy
 ```
 npm install wepy-cli -g 
@@ -13,7 +15,7 @@ npm install
 ```
 wepy build --watch
 ```
-###开发者工具使用
+### 开发者工具使用
 
 1.使用微信开发者工具新建项目，本地开发选择dist目录。
 
