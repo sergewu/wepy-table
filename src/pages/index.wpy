@@ -20,7 +20,7 @@
     data = {
       tableFixed: true,
       columns: [
-        { field: 'date', text: '日期' },
+        { field: 'date', text: '日期', format: this.dateFormat },
         { field: 'newUser', text: '新增用户' },
         { field: 'activeUser', text: '新增设备' },
         { field: 'activeUser', text: '活跃用户' },
@@ -36,47 +36,6 @@
       rows: [
         { date: '2018-06-15', newUser: '1000,121', activeUser: '10' },
         { date: '2018-06-16', newUser: '1000,121', activeUser: '100000' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
-        { date: '2018-06-17', newUser: '1000,121', activeUser: '100' },
         { date: '2018-06-17', newUser: '1000,121', activeUser: '100' }
       ]
     };
@@ -87,6 +46,14 @@
     onLoad(params, form) {
       this.gid = params.gid
       this.gameName = params.gameName
+    }
+
+    dateFormat(value, row, index) {
+      console.log(value)
+      if (value === null || value === '') {
+        return ''
+      }
+      return value.substr(String(value).indexOf('-') + 1)
     }
   }
 </script>

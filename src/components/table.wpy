@@ -80,7 +80,7 @@
     // 初始化table
     initTable() {
       // 备份原始数据
-      this._rows = this.rows
+      this._rows = JSON.parse(JSON.stringify(this.rows))
       this.maxLength = 0
       // 先根据表头计算列宽度
       for (let i in this.columns) {
